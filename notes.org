@@ -1,0 +1,251 @@
+
+#+COLUMNS: %25ITEM %15TODO %3PRIORITY %TAGS
+* Passing by value
+  normal parameters in function will take copy of parameters to pass to the function .
+  this is very expensive for processing images for example as it can cause of alot of memory usage.
+* Passing by reference
+  by adding '&' after the type of the parameter, this is useful when change on the original value is needed.
+* Passing by const reference
+  by adding 'const&' this will observe the original parameter without changing its original value, and without creating copies of the original parameters,
+  it's useful if working on big pbjects like images, and it also makes sense when working with strings
+
+
+* c++11 features
+  int Round(double x) is the same as auto Round(double x)->int. this is called trailing return types
+
+* Sequence of items STL (Standard Template Library) vector
+  in c++ collections are called containers
+
+* vector initialization
+  vector<int> v{10}; -> produces a vector with one element 10
+  vector<int> w(10); -> produces a vector with 10 elements
+  
+  #+BEGIN_SRC c++
+    for(auto const& e : v){
+      //Process 'e'...
+     }
+    #+END_SRC
+
+* Iterators
+
+** ++it: advance
+   used to advance the iterator
+
+** *it: deref
+   used to get the value of the iterator at the current pointer
+
+* classes
+  class has to be trailed with semiolon ';'
+#+BEGIN_SRC c++
+  class Rectangle{
+    
+  };
+#+END_SRC
+** constructors:
+  default ctor
+  #+BEGIN_SRC c++
+    class Rectangle{
+      Rectangle()=default;
+    }
+  #+END_SRC
+  ctor with parameters
+#+BEGIN_SRC c++
+  class Rectangle{
+    Rectangle()=default;
+    Rectangle(double width, double height)
+      :(width_{width}, height_{height}) {}
+  }
+#+END_SRC
+  
+** readonly getters defined by adding 'const' 
+   methods that don't change the class state should has the 'const'
+
+* header files
+  used to reference class from multiple places in code
+#+BEGIN_SRC c++
+  #ifndef RECTANGLE_H \\if not defined
+  #define RECTANGLE_H
+  class Rectangle{
+    
+  }
+  #endif
+#+END_SRC
+
+any directive starts with # is instruction to the preprocessor, runs before the compiler
+inline methods (less than 10 lines) should be included in the header files, otherwise source files should be used
+never use 'using namespace' in header files, as it's going to be pasted in cpp files and then we may get ambiguity
+
+'::' ==> scope resolution operator
+
+* source files
+  used to separate implementation from the declaration in the header files
+#+BEGIN_SRC c++
+  #include "Rectangle.h"
+
+  Rectangle::Rectangle(double width, double height)
+        :width_{width}, height_{height} {}
+
+  double Rectangle::Width() const {return width_;}
+   double Rectangle::Height() const {return height_;}
+#+END_SRC
+
+* c++ calculations
+  if all numbers participating in calculation are int ===> then the result is int
+#+BEGIN_SRC c++
+  int main(){
+    float f=9/5; //this will produce 1
+    float f=9.0/5; // this will ptoduce 1.8
+  }
+#+END_SRC
+
+* class initialization
+  Account acct; ==> initialize properly
+  Account acct(); ==> this will declare a function that returns Account type;
+
+
+  '*=' ==> multiply by same as '+=' which is add by
+
+* free store Memory management (Raw pointers)
+  must be learnet from modern materials only
+
+* legacy constructors
+** casting 
+   int t=(int)5.8; ==> this is legacy --> is equ to static_cast<int>(5.8)
+
+** Macros
+   #define --> to set const #define Pi 3.14 --> equ to const double Pi=3.14
+           --> to create functions
+
+* operator overloading
+  to write operator overload
+#+BEGIN_SRC c++
+  bool operator <(Account& acc){
+    return balance<acc.balance;
+  }
+#+END_SRC
+
+* Templates
+  are like generics in c#, but much faster as it's resolved at compile time not runtime
+#+BEGIN_SRC c++ ==> this is function template
+    template <class T>
+    T max(T& t1, T& t2){
+      return t1 <t2? t2 : t1;
+    }
+  max(t1,t2);
+#+END_SRC
+
+#+BEGIN_SRC c++ ==> this is class template
+  template <class T>
+  class Accum{
+  private:
+    T total;
+  public:
+    Accum(T start): total(start){};
+    T operatot+=(const T& t){return total = total + t;};
+    T GetTotal(){return total;}
+  };
+
+Accum<int> integers(0);
+#+END_SRC
+specialized template: used to create template for specific type
+#+BEGIN_SRC c++
+  template <>
+  class Accum<Person>
+{
+  private:
+   int total;
+  public:
+    Accum(T start): total(start){};
+    int operatot+=(Person& t){return total = total + t;};
+    int GetTotal(){return total;}
+  };
+
+#+END_SRC
+* Pointers
+#+BEGIN_SRC c++
+a pointer that stores the value of 0 is called a null pointer
+int* pA = &A; // --> this is a pointer to A address - & before variable gets its address
+*pA =5; // this will sets the value of the variable stored in this memory address
+(*p).memberVariable; //to call member variable on the target of the pointer it has to be in '()',
+p->.memberVariable;// or for short 'p->' but for class types only not for fundamental types like int
+void GetName(Person& p);  // -& after type is call by reference
+#+END_SRC
+  nullptr or NULL used not to point to anything
+
+*** The symbol * is used in two different ways in connection with pointers:
+ **** It can serve as a type modifier in a pointer variable definition.
+ **** It can be used as the dereference operator.
+
+** shared pointer
+** weak pointer
+** unique pointer
+
+* Free Store (known  as the heap)
+  used to create long lived variables
+** create with 'new' which gives a pointer
+** tear down with 'delete'
+* Rule of three for Manual Memory Management
+  Copy Constructor, Copy Assignmnet Operator, Destructor
+* Exceptions
+** always catch by reference, to avoid slicing and to get complete info about the exception type, not just the base class of the exception.
+** we can have many number of catch blocks, but the more specific has to be at the top.
+
+* smart pointer:
+  is an object that stores and manages a pointer to a heap object,
+  it automatically deletes the heap object at the appropiate time.
+       QT====> QPointer
+       STL===> auto_ptr
+       BOOSt=> shared_ptr
+
+*** 1. If we want to make sure that ptr cannot point to any other memory location, we can write it one of two ways:
+#+BEGIN_SRC C++
+Type* const ptr = &vbl;
+Type* const ptr(&vbl);
+#+END_SRC
+The pointer is a const but the addressed object can be changed.
+
+*** 2. If we want to make sure that the value of vbl cannot be changed by dereferencing ptr, we can write it in two ways:
+#+BEGIN_SRC C++
+const Type* ptr = &vbl;
+const Type* ptr(&vbl);
+#+END_SRC
+
+*** 3. In addition, if we want to impose both kinds of protection we can write:
+#+BEGIN_SRC C++
+const Type* const ptr = &vbl;
+const Type* const ptr(&vbl);
+#+END_SRC
+
+*** It is okay to assign the address of a variable to a pointer to const. It is an error to
+assign the address of a const object to an unrestricted (i.e., non-const) pointer
+variable because that would allow the const object's value to be changed.
+#+BEGIN_SRC C++
+int a = 1;
+const int c = 2;
+const int* p1 = &c; // OK
+const int* p2 = &a; // OK
+int* p3 = &c; // error
+*p3 = 5; // error
+#+END_SRC
+
+
+* Reference Variables
+**  lvalue ==> is an expression that refers to an object
+*** ex. array cells, variables and dereferenced pointers
+*** i+3 or 3 are not lvalues
+* Class member access specifiers
+** A public member can be accessed (using an object of the class1) anywhere in a program that #includes the class definition file.
+** A puvlic static can be accessed without an object.
+** A protected member can be accessed inside the definition of a member function of its own class, or a member function of a derived class.
+** A private member is only accessible by member functions of its own class, and also accessible by friends of the calss.
+   struct is a class in which members are by default public.
+* Ctors
+  any ctor with single argument of different type==> is conversion ctor
+  default assignment operator provided by compiler is ==> 
+  #+BEGIN_SRC c++
+      Fraction& operator=(const Fraction& fobj);//Default assignment operator, performs memberwise assignment
+      Fraction(int numer, int denom=1):numer(m_Numer),denom(m_Denomer){} //conversion ctor since the second argument is optional
+      Fraction f=19;//compiler checks to see if it can convert int 19 to Fraction, which is possible using the above conversion ctor
+      //so it trys to call the conversion ctor, and then the default assignment operator implicitly
+      //to avoid this behavior we can add the keyword 'explicit'
+  #+END_SRC
