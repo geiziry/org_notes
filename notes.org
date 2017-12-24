@@ -266,10 +266,20 @@ functions must be declared before it's used for the first time (function prototy
 * Function Overloading
 in C++ return type is not part of the signature (which consists of function's name and parameter list), const is part of the signature
 * Inheritance
-three kinds of derivation public, protected and private
+  three kinds of derivation public, protected and private
 ** abstract class:
 *** is a class has at least one pure virtual function 
 #+BEGIN_SRC C++
 virtual double area()=0;
 #+END_SRC
 *** there are no public ctor
+* Function Hiding
+derived class function can be called directly.
+class scope resolution operator can be used to call the base class hidden function explicitly.
+* Dependency Management
+**  compile-time --> if progElement1 is required to compile progElement2
+** link-time --> if progElement1.h needs to be included in progElement2.cpp
+* Forward declaration
+  allows to use the class type for pointers and references ,not dereferenced before the class definition is encountered.
+  this allows classes to have circular relationships, without having circular dependencies between header files (which is not permitted by the compiler).
+
