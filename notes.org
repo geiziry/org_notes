@@ -179,6 +179,9 @@ void GetName(Person& p);  // -& after type is call by reference
 ** shared pointer
 ** weak pointer
 ** unique pointer
+** pass-by-pointer or pass-by-reference
+it's preferable to use pass-by-reference,
+only when needed to manage objects(creation, destruction, adding to a managed container), pointers are needed
 
 * Free Store (known  as the heap)
   used to create long lived variables
@@ -249,3 +252,23 @@ int* p3 = &c; // error
       //so it trys to call the conversion ctor, and then the default assignment operator implicitly
       //to avoid this behavior we can add the keyword 'explicit'
   #+END_SRC
+* Functions Inlining
+
+** An inline function must be defined before it is called (a declaration is not enough).
+** An inline definition can only occur once in any source code module.
+** If a class member function's definition appears inside the class definition,the function is implicitly inline.
+** If a function is too complex, or the compiler options are switched, the compiler may ignore the inline directive.Most compilers refuse to inline functions that contain:
+*** while, for, do . . . while statements
+*** switch statements
+*** More than a certain number of lines of code
+* Functions Declaration
+functions must be declared before it's used for the first time (function prototype)
+* Function Overloading
+in C++ return type is not part of the signature (which consists of function's name and parameter list), const is part of the signature
+* Inheritance
+three kinds of derivation public, protected and private
+** abstract class:
+   is a class has at least one pure virtual function 
+#+BEGIN_SRC C++
+virtual double area()=0;
+#+END_SRC
