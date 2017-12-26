@@ -1,4 +1,5 @@
 
+
 #+COLUMNS: %25ITEM %15TODO %3PRIORITY %TAGS
 * Passing by value
   normal parameters in function will take copy of parameters to pass to the function .
@@ -282,4 +283,67 @@ class scope resolution operator can be used to call the base class hidden functi
 * Forward declaration
   allows to use the class type for pointers and references ,not dereferenced before the class definition is encountered.
   this allows classes to have circular relationships, without having circular dependencies between header files (which is not permitted by the compiler).
+** Important Rule:
+   Don't use #include if forward declaration will suffice
+* Installing libraries
+  two variables in the pro file need to be specified--> 
+#+BEGIN_SRC C++
+ TEMPLATE= lib          #Build this as library
+ DESTDIR= $$(CPPLIBS)   #Place the compiled shared object here
+#+END_SRC
+#+BEGIN_SRC c++
+  make install 
+   \\ will generate the Make file with install target
+  target.path=/usr/lib
+  INSTALLS += target
+#+END_SRC
+* Design Patterns
+** Creational Patterns
+   manage the creation of objects
+** Structural Patterns
+   describe how objects are connected together to form more complex objects
+** Behavioral patterns
+   used to describe how code is organized, to assign responsibility or role to ceratain classes, and to specify the way objects communicate with each other.
+* Signals and Solts
+#+BEGIN_SRC c++
+qApp->exec(); //main thread of the application enters into the message loop, which allows QObjects to send messages to one another
+#+END_SRC
+** signal
+   is a message like void function declaration, it has a parameter list but no function body,
+   it's part of the class interface, but can't be called__it must be 'emitted' by an object of that class
+   it's implicitly protected
+** slot
+   is a void member function, and can be called as a normal member function
 
+signal of one object can be connected to slots of one or more other objects, provided:
+*** object exist
+*** parameter lists are assignment compatible from the signal to the slot
+#+BEGIN_SRC c++
+bool QObject::connect(senderqobjptr,
+                      SIGNAL(signalname(argtypelist)),
+                      receiverqobjptr,
+                      SLOT(slotname(argtypelist))
+                      optionalConnectionType);
+#+END_SRC
+* QObject
+  The designers of QObject asserted an unequivocal 'no copy' policy by designating
+its assignment operator and copy constructor private. This effectively
+prevents the compiler from generating assignment operators and copy constructors
+for QObject-derived classes.
+** One consequence of this scheme is that any attempt to pass or return QObject-derived classes by value to or from functions results in a compile-time error.
+* Generics and Templates
+  Templates provide a means for C++ to generate different versions of classes and functions with parameterized types and common behavior.
+** template parameter can be used to pass type experessions as well as variables and values
+#+BEGIN_SRC c++
+template <class T > class String { ... };
+template <class T, int max > Buffer { ...
+T v[max];
+};
+String <char> s1;
+Buffer <int, 10> intBuf10;
+#+END_SRC
+* Qt Containers
+** Managed containers 'composite as it manages its childern'
+deletes any heap objects it "owns" when the container is destroyed
+** UnManaged containers 'aggregates'
+with Qt container of pointers qDeleteAll(container) can be used which calls delete on each element in the container
