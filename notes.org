@@ -347,3 +347,15 @@ Buffer <int, 10> intBuf10;
 deletes any heap objects it "owns" when the container is destroyed
 ** UnManaged containers 'aggregates'
 with Qt container of pointers qDeleteAll(container) can be used which calls delete on each element in the container
+* Operator
+| Operators types              | list of operators           |
+|------------------------------+-----------------------------|
+| Assignment operators         | =, +=, *=,...               |
+| Arithmetic operators         | +, -, *, /, %               |
+| Relational operators         | <, <=, >, >=, ==, !=        |
+| Logical operators            | &&, \vert\vert, !           |
+| Bitwise operators            | &, \vert, ^, ~, <<, >>      |
+| Memory management oprators   | new, delete, sizeof         |
+| Pointer and access operators | *, &, ., ->, [], ()         |
+| Scope resolution operators   | ::                          |
+| Miscellaneous operators      | conditional (? :), comma(,) |
