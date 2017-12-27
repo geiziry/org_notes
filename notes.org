@@ -353,7 +353,7 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | Assignment operators         | =, +=, *=,...               |
 | Arithmetic operators         | +, -, *, /, %               |
 | Relational operators         | <, <=, >, >=, ==, !=        |
-| Logical operators            | &&, \vert\vert, !           |
+| Logical operators            | &&, \vert \vert, !          |
 | Bitwise operators            | &, \vert, ^, ~, <<, >>      |
 | Memory management oprators   | new, delete, sizeof         |
 | Pointer and access operators | *, &, ., ->, [], ()         |
