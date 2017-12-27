@@ -407,9 +407,9 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | !=               | two      | Not equal                                       | expr1 != expr2                   | L | Y   |
 | &                | two      | Bitwise AND                                     | expr1 & expr2                    | L | Y   |
 | ^                | two      | Bitwise XOR (exclusive OR)                      | expr1 ^ e2                       | L | Y   |
-| \ver             | two      | Bitwise OR (inclusive OR)                       | expr1 \ver expr2                 | L | Y   |
+| \vert            | two      | Bitwise OR (inclusive OR)                       | expr1 \vert expr2                | L | Y   |
 | &&               | two      | Logical AND                                     | expr1 && expr2                   | L | Y   |
-| \ver \ver        | two      | Logical OR                                      | expr1 \ver \ver expr2            | L | Y   |
+| \vert \vert      | two      | Logical OR                                      | expr1 \vert \vert expr2          | L | Y   |
 | =                | two      | Assign                                          | expr1 = expr2                    | R | Y   |
 | *=               | two      | Multiply and assign                             | expr1 *= expr2                   | R | Y   |
 | /=               | two      | Divide and assign                               | expr1 /= expr2                   | R | Y   |
@@ -419,7 +419,7 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | <<=              | two      | Left shift and assign                           | expr1 <<= expr2                  | R | Y   |
 | >>=              | two      | Right shift and assign                          | expr1 >>= expr2                  | R | Y   |
 | &=               | two      | And and assign                                  | expr1 &= expr2                   | R | Y   |
-| \ver=            | two      | Inclusive or and assign                         | expr1 \ver= expr2                | R | Y   |
+| \vert=           | two      | Inclusive or and assign                         | expr1 \vert= expr2               | R | Y   |
 | ^=               | two      | Exclusive or and assign                         | expr1 ^= expr2                   | R | Y   |
 | ? :              | three    | Conditional expression                          | bool ? expr : expr               | L | N   |
 | throw            | one      | Throw exception                                 | throw expr                       | R | N   |
