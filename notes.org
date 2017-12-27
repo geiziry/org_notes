@@ -347,7 +347,7 @@ Buffer <int, 10> intBuf10;
 deletes any heap objects it "owns" when the container is destroyed
 ** UnManaged containers 'aggregates'
 with Qt container of pointers qDeleteAll(container) can be used which calls delete on each element in the container
-* Operator
+* Operators
 | Operators types              | list of operators           |
 |------------------------------+-----------------------------|
 | Assignment operators         | =, +=, *=,...               |
@@ -359,3 +359,203 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | Pointer and access operators | *, &, ., ->, [], ()         |
 | Scope resolution operators   | ::                          |
 | Miscellaneous operators      | conditional (? :), comma(,) |
+* TABLE 19.2 C++ Operators
+| Operator         | Operands | Description                                     | Example                          | A | Ovl |
+|------------------+----------+-------------------------------------------------+----------------------------------+---+-----|
+| ::               | one      | Global Scope Resolution                         | :: name                          | R | N   |
+| ::               | two      | class/namespace scope resolution                | className::memberName            | L | N   |
+| ->               | two      | Member selector via ptr                         | ptr->memberName                  | L | N   |
+| .                | two      | Member  selector via obj                        | obj.memberName                   | L | N   |
+| ->               | one      | Smart ptr                                       | obj->member                      | R | M   |
+| [ ]              | two      | Subscript operator                              | ptr[expr]                        | L | M   |
+| ( )              | any      | a Function call                                 | function(argList)                | L | N   |
+| ( )              | any      | Value construction                              | className(argList)               | L | M   |
+| ++               | one      | Post increment                                  | varName++                        | R | Y   |
+| --               | one      | Post decrement                                  | varName--                        | R | Y   |
+| typeid           | one      | Type identification                             | typeid( type ) or typeid( expr ) | R | N   |
+| dynamic_cast     | two      | runtime checked conv                            | dynamic_cast< type >( expr )     | L | N   |
+| static_cast      | two      | compile time checked conv                       | static_cast< type >( expr )      | L | N   |
+| reinterpret_cast | two      | unchecked conv reinterpret_cast< type >( expr ) | L                                | N |     |
+| const_cast       | two      | const conv                                      | const_cast< type >( expr )       | L | N   |
+| sizeof           | one      | Size in bytes                                   | sizeof expr or sizeof( type )    | R | N   |
+| ++               | one      | Pre Increment                                   | ++varName                        | R | Y   |
+| --               | one      | Pre Decrement                                   | --varName                        | R | Y   |
+| ~                | one      | Bitwise negation                                | ~ expr                           | R | Y   |
+| !                | one      | Logical negation                                | ! expr                           | R | Y   |
+| +, -             | one      | Unary plus, unary minus                         | + expr or -expr                  | R | Y   |
+| *                | one      | Pointer dereference                             | * ptr                            | R | Y   |
+| &                | one      | Address -of                                     | & lvalue                         | R | Y   |
+| new              | one      | Allocate                                        | new type or new type(exprlist)   | R | Y   |
+| new [ ]          | two      | Allocate array                                  | new type [ size ]                | L | Y   |
+| delete           | one      | Deallocate                                      | delete ptr                       | R | Y   |
+| delete [ ]       | one      | Deallocate array                                | delete [ ] ptr                   | R | M   |
+| ( )              | two      | C-style type cast                               | ( type ) expr                    | R | N   |
+| ->*              | two      | Member ptr selector via ptr                     | ptr->*ptrToMember                | L | M   |
+| .*               | two      | Member ptr selector via obj                     | obj.*ptrToMember                 | L | N   |
+| *                | two      | Multiply                                        | expr1 * expr2                    | L | Y   |
+| /                | two      | Divide                                          | expr1 / expr2                    | L | Y   |
+| %                | two      | Remainder                                       | expr1 % expr2                    | L | Y   |
+| +                | two      | Add                                             | expr1 + expr2                    | L | Y   |
+| -                | two      | Subtract                                        | expr1 - expr2                    | L | Y   |
+| <<               | two      | Bitwise left shift                              | expr << shiftAmt                 | L | Y   |
+| >>               | two      | Bitwise right shift                             | expr >> shiftAmt                 | L | Y   |
+| <                | two      | Less than                                       | expr1 < expr2                    | L | Y   |
+| <=               | two      | Less or equal                                   | expr1 <= expr2                   | L | Y   |
+| >                | two      | Greater                                         | expr1 > expr2                    | L | Y   |
+| >=               | two      | Greater or equal                                | expr1 >= expr2                   | L | Y   |
+| ==               | two      | Equals c                                        | expr1 == expr2                   | L | Y   |
+| !=               | two      | Not equal                                       | expr1 != expr2                   | L | Y   |
+| &                | two      | Bitwise AND                                     | expr1 & expr2                    | L | Y   |
+| ^                | two      | Bitwise XOR (exclusive OR)                      | expr1 ^ e2                       | L | Y   |
+| \ver             | two      | Bitwise OR (inclusive OR)                       | expr1 \ver expr2                 | L | Y   |
+| &&               | two      | Logical AND                                     | expr1 && expr2                   | L | Y   |
+| \ver \ver        | two      | Logical OR                                      | expr1 \ver \ver expr2            | L | Y   |
+| =                | two      | Assign                                          | expr1 = expr2                    | R | Y   |
+| *=               | two      | Multiply and assign                             | expr1 *= expr2                   | R | Y   |
+| /=               | two      | Divide and assign                               | expr1 /= expr2                   | R | Y   |
+| %=               | two      | Modulo and assign                               | expr1 %= expr2                   | R | Y   |
+| +=               | two      | Add and assign                                  | expr1 += expr2                   | R | Y   |
+| -=               | two      | Subtract and assign                             | expr1 -= expr2                   | R | Y   |
+| <<=              | two      | Left shift and assign                           | expr1 <<= expr2                  | R | Y   |
+| >>=              | two      | Right shift and assign                          | expr1 >>= expr2                  | R | Y   |
+| &=               | two      | And and assign                                  | expr1 &= expr2                   | R | Y   |
+| \ver=            | two      | Inclusive or and assign                         | expr1 \ver= expr2                | R | Y   |
+| ^=               | two      | Exclusive or and assign                         | expr1 ^= expr2                   | R | Y   |
+| ? :              | three    | Conditional expression                          | bool ? expr : expr               | L | N   |
+| throw            | one      | Throw exception                                 | throw expr                       | R | N   |
+| ,                | two      | Sequential Evaluation(comma)                    | expr , expr                      | L | Y   |
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
