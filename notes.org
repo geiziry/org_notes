@@ -429,7 +429,7 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 
 * Hierarchy of Basic Types
 #+CAPTION: Hierarchy of Basic Types
-[[./]]Hierarchy of Basic Types.png
+[[https://github.com/geiziry/org_notes/blob/master/Hierarchy%20of%20Basic%20Types.png]]
 
 
 
