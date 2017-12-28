@@ -251,7 +251,7 @@ int* p3 = &c; // error
       Fraction(int numer, int denom=1):numer(m_Numer),denom(m_Denomer){} //conversion ctor since the second argument is optional
       Fraction f=19;//compiler checks to see if it can convert int 19 to Fraction, which is possible using the above conversion ctor
       //so it trys to call the conversion ctor, and then the default assignment operator implicitly
-      //to avoid this behavior we can add the keyword 'explicit'
+      //to avoid this behavior we can add the keyword 'explicit', means the ctor can only be called 'explicitly', and can't be called implicitly. 
   #+END_SRC
 * Functions Inlining
 
@@ -450,143 +450,16 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
    #+BEGIN_SRC c++
    const_cast<DestType>(expr) //creates a non-const version of expr
    #+END_SRC
-In general, const_cast is used only on const -references and pointers to non- const objects. Using const_cast to change const objects has undefined behavior because const objects may be stored in read-only memory (which the operating system protects).
+In general, const_cast is used only on const -references and pointers to non-const objects. 
+Using const_cast to change const objects has undefined behavior because const objects may be stored in read-only memory (which the operating system protects).
 if the const object to be casted away const, is on stack attempting to change its memory will not cause segmentation fault.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+** reinterpret_cast
+#+BEGIN_SRC c++
+Spam spam;
+Egg* eggP;
+eggP = reinterpret_cast<Egg*>(&spam);
+eggP->scramble();
+#+END_SRC
+reinterpret_cast takes some spam and gives us an Egg -shaped pointer, without concern for type-compatibility.
+ eggP is reinterpreting the bits of spam as if they were
+bits of egg.
