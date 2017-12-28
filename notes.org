@@ -359,7 +359,8 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | Pointer and access operators | *, &, ., ->, [], ()         |
 | Scope resolution operators   | ::                          |
 | Miscellaneous operators      | conditional (? :), comma(,) |
-* TABLE 19.2 C++ Operators
+* C++ Operators Detailed
+** 
 | Operator         | Operands | Description                                     | Example                          | A | Ovl |
 |------------------+----------+-------------------------------------------------+----------------------------------+---+-----|
 | ::               | one      | Global Scope Resolution                         | :: name                          | R | N   |
@@ -424,6 +425,17 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 | ? :              | three    | Conditional expression                          | bool ? expr : expr               | L | N   |
 | throw            | one      | Throw exception                                 | throw expr                       | R | N   |
 | ,                | two      | Sequential Evaluation(comma)                    | expr , expr                      | L | Y   |
+
+
+* Hierarchy of Basic Types
+#+CAPTION: Hierarchy of Basic Types
+[[./]]Hierarchy of Basic Types.png
+
+
+
+
+
+
 
 
 
