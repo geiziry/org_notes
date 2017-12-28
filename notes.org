@@ -433,6 +433,25 @@ with Qt container of pointers qDeleteAll(container) can be used which calls dele
 
 
 
+* Casting
+#+CAPTION: ANSI Typecasts
+| static_cast< type >( expr )      | For converting between related types                     |
+| const_cast< type > expr          | For casting away const or volatile                       |
+| dynamic_cast< type >( expr )     | For safe navigation through an inheritance hierarchy     |
+| reinterpret_cast< type >( expr ) | For type conversions of pointers between unrelated types |
+|                                  |                                                          |
+
+** static_cast
+  #+BEGIN_SRC c++
+  static_cast<DestType>(expr) //converts expr to DestType, provided the compiler knows of an implicit conversion from expr to DestType 
+  #+END_SRC
+   static_cast can't cast away constness, for that const_cast<> must be used
+** const_cast
+   #+BEGIN_SRC c++
+   const_cast<DestType>(expr) //creates a non-const version of expr
+   #+END_SRC
+In general, const_cast is used only on const -references and pointers to non- const objects. Using const_cast to change const objects has undefined behavior because const objects may be stored in read-only memory (which the operating system protects).
+if the const object to be casted away const, is on stack attempting to change its memory will not cause segmentation fault.
 
 
 
