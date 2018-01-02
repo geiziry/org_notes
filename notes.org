@@ -463,3 +463,43 @@ eggP->scramble();
 reinterpret_cast takes some spam and gives us an Egg -shaped pointer, without concern for type-compatibility.
  eggP is reinterpreting the bits of spam as if they were
 bits of egg.
+* Runtime Type Identification (RTTI)
+** downcasting:
+   conversion of a base class pointer to derived class pointer.
+* Member Selection
+  A pointer <T> is said to be a guarded pointer to a QObject of type T if the pointer is automatically set to 0 when its object is destroyed.
+  QSharedPointer , QPointer , and QWeakPointer all provide this functionality as well.
+* Scope And Storage Class
+  Identifiers have scope , objects have a storage class , and variables have both.
+**  Declaring name:
+    means telling the complier what type to associate with this name
+**  Defining an object or variable: 
+    means allocating memory for that object, and optionally assigning initial value.
+**  Definging a function:
+    describing its behavior in a block of c++ statement.
+**  Defining a class:
+    means specifing its structure in a sequence of declarations of functions and data members.
+
+*** Each declaration that is not a definition conveys an implicit promise to the compiler (which will be enforced by the linker),that the declared name will be defined in an appropriate location somewhere else in the program.
+
+*** All objects and variables should be properly initialized at (or immediately after) creation time.
+
+* Identifier Scopes
+
+** Block scope
+** Function scope
+** Class scope
+** Namespace scope
+   An identifier in a namespace can be made available globally through the use of
+   the scope resolution operator , NamespaceName:: .
+   It can also be made avail able to other scopes without using scope resolution through the using
+keyword.
+** File scope
+   if not within curly braces {...}, and is declared static.
+   Its scope extends from the declaration to the end of the file.
+   The keyword static hides the identifier from other source files and restricts its scope to the file in which it was declared.
+   can't be declared extern and accessed fro other source files.
+** Global scope
+   if not within curly braces {...}, and is not declared static.
+   can be extended to other source files, by using the keyword extern.
+   
