@@ -536,3 +536,22 @@ int s[MAXSIZE];
 ** Open Namespaces
    'Open' in the sense that you can add members to an existing namespace by declaring a seconf namespace with the same name, but with new items.
    to declare a static (global or namespace) object without defining it, use the keyword 'extern'.
+* Pointers
+
+  applying 'delete' ==> change heap memory used by the object from "in use" to "available".
+                    ==> state of the pointer changes to "undefined" 
+		    ==> second application of delete to same pointer may cause runtime problems, possible heap corruption
+** to avoid repeated delete, it is good practice to assign 0 or NULL to a pointer immediately after it has been deleted.
+   if delete is applied to a null pointer, there is no error and no action.
+** reassigning a pointer will cause memory leak, as this will leave allocated memory with nothing pointing to it.
+** Memory Access Summary 
+**** 1 -The operators new and delete give the C++ programmer increased power and increased responsibility.
+**** 2 -Improper use of pointers and dynamic memory can cause program crashes that result from heap corruption and memory leaks.
+**** 3 -Qt and STL container classes permit the safe use of dynamic memory without adversely affecting performance.
+**** 4 -In a multiple variable declaration, the unary * operator applies only to the variable that immediately follows it, not the type that precedes it.
+**** 5 -Dereferencing an uninitialized pointer is a serious error that may not be caught by the compiler.
+**** 6 -After delete has been applied to a pointer, the state of that pointer is undefined.
+**** 7 -It is good practice to assign 0 or NULL to a pointer immediately after you delete it.
+**** 8 -Applying delete to a non-null pointer that was not returned by new produces undefined results.
+**** 9 -The compiler cannot be relied upon to detect the improper use of delete , so it is the programmer's responsibility to use delete correctly.
+**** 10 -A memory leak is produced when a program causes memory to be allocated and then loses track of that memory so that it can neither be accessed nor delete d.
