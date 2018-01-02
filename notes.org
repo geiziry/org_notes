@@ -502,4 +502,37 @@ keyword.
 ** Global scope
    if not within curly braces {...}, and is not declared static.
    can be extended to other source files, by using the keyword extern.
-   
+** Globals and const
+   has file scope, but can be exported to other files by declaring it 'extern'
+* Storage Class
+  4 places to allocate space when object is created
+** static
+   lifetime begins when objct's module is loaded, and ends when program terminates
+** stack
+   allocated automatically when object definition is executed, lifetime is determined by the braces around the code that is executed.
+** heap
+   objects created via 'new', lifetime is determined by the use of 'new' and 'delete'.
+** register
+   small quantity of fastest memory, located on the CPU, most compiers ignores it, and instead put on the stack with higher access priority.
+*** Requesting this storgae for an object, means that you can't take its address with the address-of operator(&).
+**** For cleaning up purposes: qApp is a good choice for "Ultimate ancestor" of any ophan QObject in an application.
+* Namespaces
+  an alias for a long namespace name can be introduced with command
+#+BEGIN_SRC c++
+namespace xyz=verycomplicatednamespace;
+#+END_SRC
+** anonymous Namespace
+is accessible from that point down to the end of the file, similar to static global, or file scope identifier.
+and it can eliminate the need for static globals.
+#+BEGIN_SRC c++
+namespace{
+const int MAXSIZE = 256;
+}
+
+void f1(){
+int s[MAXSIZE];
+}
+#+END_SRC
+** Open Namespaces
+   'Open' in the sense that you can add members to an existing namespace by declaring a seconf namespace with the same name, but with new items.
+   to declare a static (global or namespace) object without defining it, use the keyword 'extern'.
