@@ -545,6 +545,7 @@ int s[MAXSIZE];
    if delete is applied to a null pointer, there is no error and no action.
 ** reassigning a pointer will cause memory leak, as this will leave allocated memory with nothing pointing to it.
 ** Memory Access Summary 
+<<<<<<< HEAD
 **** 1 -The operators new and delete give the C++ programmer increased power and increased responsibility.
 **** 2 -Improper use of pointers and dynamic memory can cause program crashes that result from heap corruption and memory leaks.
 **** 3 -Qt and STL container classes permit the safe use of dynamic memory without adversely affecting performance.
@@ -555,3 +556,15 @@ int s[MAXSIZE];
 **** 8 -Applying delete to a non-null pointer that was not returned by new produces undefined results.
 **** 9 -The compiler cannot be relied upon to detect the improper use of delete , so it is the programmer's responsibility to use delete correctly.
 **** 10 -A memory leak is produced when a program causes memory to be allocated and then loses track of that memory so that it can neither be accessed nor delete d.
+=======
+**** The operators new and delete give the C++ programmer increased power and increased responsibility.
+**** Improper use of pointers and dynamic memory can cause program crashes that result from heap corruption and memory leaks.
+**** Qt and STL container classes permit the safe use of dynamic memory without adversely affecting performance.
+**** In a multiple variable declaration, the unary * operator applies only to the variable that immediately follows it, not the type that precedes it.
+**** Dereferencing an uninitialized pointer is a serious error that may not be caught by the compiler.
+**** After delete has been applied to a pointer, the state of that pointer is undefined.
+**** It is good practice to assign 0 or NULL to a pointer immediately after you delete it.
+**** Applying delete to a non-null pointer that was not returned by new produces undefined results.
+**** The compiler cannot be relied upon to detect the improper use of delete , so it is the programmer's responsibility to use delete correctly.
+**** A memory leak is produced when a program causes memory to be allocated and then loses track of that memory so that it can neither be accessed nor delete d.
+>>>>>>> 1d358733adc439d343eebfc761f17a5949e45046
