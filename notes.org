@@ -282,4 +282,7 @@ class scope resolution operator can be used to call the base class hidden functi
 * Forward declaration
   allows to use the class type for pointers and references ,not dereferenced before the class definition is encountered.
   this allows classes to have circular relationships, without having circular dependencies between header files (which is not permitted by the compiler).
+  
+* const vs constexpr
+  constexpr in compile time, and to be used in constant expressions like in templates
 
