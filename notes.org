@@ -286,3 +286,4 @@ class scope resolution operator can be used to call the base class hidden functi
 * const vs constexpr
   constexpr in compile time, and to be used in constant expressions like in templates
 
+** in C++ unused parameters don't have to be named
